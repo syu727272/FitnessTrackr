@@ -35,11 +35,16 @@
       "workoutsThisWeek": "Workouts This Week",
       "personalRecords": "Personal Records",
       "activeDays": "Active Days",
-      "totalWeight": "Total Weight"
+      "totalWeight": "Total Weight",
+      "workouts": "Workouts"
     },
     "recentWorkouts": "Recent Workouts",
     "noWorkouts": "No workouts yet",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "defaultName": "Fitness Enthusiast",
+    "lastWorkout": "Your last workout was",
+    "noDate": "a while ago",
+    "readyPrompt": "Ready for another session?"
   },
   "workout": {
     "title": "Workouts",

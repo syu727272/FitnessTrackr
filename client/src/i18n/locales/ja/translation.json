@@ -35,11 +35,16 @@
       "workoutsThisWeek": "今週のトレーニング",
       "personalRecords": "自己ベスト",
       "activeDays": "アクティブな日数",
-      "totalWeight": "合計重量"
+      "totalWeight": "合計重量",
+      "workouts": "トレーニング"
     },
     "recentWorkouts": "最近のトレーニング",
     "noWorkouts": "まだトレーニングがありません",
-    "viewAll": "すべて表示"
+    "viewAll": "すべて表示",
+    "defaultName": "フィットネス愛好家",
+    "lastWorkout": "最後のトレーニングは",
+    "noDate": "しばらく前",
+    "readyPrompt": "新しいセッションの準備はできていますか？"
   },
   "workout": {
     "title": "トレーニング",
