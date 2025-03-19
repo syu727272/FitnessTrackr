@@ -1,5 +1,6 @@
 import { useLocation, Link } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { Dumbbell, Home, Calendar, Sparkles, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 export interface SidebarProps {
   className?: string;
@@ -17,34 +19,35 @@ export interface SidebarProps {
 export function Sidebar({ className }: SidebarProps) {
   const [location] = useLocation();
   const { user, logoutMutation } = useAuth();
+  const { t } = useTranslation();
 
   const navigation = [
     {
-      name: "Dashboard",
+      name: t("nav.home"),
       href: "/",
       icon: Home,
       current: location === "/",
     },
     {
-      name: "Workouts",
+      name: t("nav.workouts"),
       href: "/workout",
       icon: Dumbbell,
       current: location === "/workout",
     },
     {
-      name: "History",
+      name: t("nav.history"),
       href: "/history",
       icon: Calendar,
       current: location === "/history",
     },
     {
-      name: "AI Coach",
+      name: t("nav.coach"),
       href: "/ai-coach",
       icon: Sparkles,
       current: location === "/ai-coach",
     },
     {
-      name: "Profile",
+      name: t("nav.profile"),
       href: "/profile",
       icon: User,
       current: location === "/profile",
@@ -105,7 +108,10 @@ export function Sidebar({ className }: SidebarProps) {
             <p className="text-xs font-medium text-gray-500">{user?.email}</p>
           </div>
         </div>
-        <div className="px-4 mt-2">
+        <div className="px-4 mt-2 space-y-2">
+          <div className="flex justify-end mb-1">
+            <LanguageSwitcher />
+          </div>
           <Button 
             variant="outline" 
             className="w-full text-sm flex items-center justify-center" 
@@ -117,7 +123,7 @@ export function Sidebar({ className }: SidebarProps) {
             ) : (
               <LogOut className="h-4 w-4 mr-2" />
             )}
-            Sign Out
+            {t("auth.logout")}
           </Button>
         </div>
       </div>
