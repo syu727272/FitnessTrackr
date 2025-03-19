@@ -12,6 +12,8 @@ import { formatDistance } from "date-fns";
 import { Loader2 } from "lucide-react";
 import { WorkoutStats } from "@shared/schema";
 import { GeminiProvider } from "@/hooks/use-gemini";
+import { useTranslation } from "react-i18next";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function HomePage() {
   // Fetch dashboard data
