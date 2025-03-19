@@ -16,6 +16,9 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "@/hooks/use-auth";
 
 export default function HomePage() {
+  const { t } = useTranslation();
+  const { user } = useAuth();
+  
   // Fetch dashboard data
   const { data: dashboardData, isLoading } = useQuery({
     queryKey: ["/api/dashboard"],
@@ -27,7 +30,7 @@ export default function HomePage() {
 
   const lastWorkoutDate = dashboardData?.lastWorkout
     ? formatDistance(new Date(dashboardData.lastWorkout.date), new Date(), { addSuffix: true })
-    : "never";
+    : t("home.noWorkouts");
 
   const defaultStats: WorkoutStats = {
     workoutsThisWeek: 0,
@@ -60,7 +63,7 @@ export default function HomePage() {
                 />
 
                 {/* Stats Overview */}
-                <h2 className="text-xl font-semibold text-gray-800 mb-4">Your Fitness Overview</h2>
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">{t("home.stats.title")}</h2>
                 <StatsGrid stats={dashboardData?.stats || defaultStats} />
 
                 {/* Recent Workouts & Progress */}
@@ -72,7 +75,7 @@ export default function HomePage() {
 
               {/* AI Coach Section */}
               <section id="ai-coach" className="mb-12">
-                <h2 className="text-xl font-semibold text-gray-800 mb-4">AI Coach</h2>
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">{t("nav.coach")}</h2>
                 <GeminiProvider>
                   <AiCoach />
                 </GeminiProvider>

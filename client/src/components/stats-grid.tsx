@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { WorkoutStats } from "@shared/schema";
 import { Clock, Zap, Calendar, Scale } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface StatsGridProps {
   stats: WorkoutStats;
@@ -8,27 +9,29 @@ interface StatsGridProps {
 }
 
 export function StatsGrid({ stats, className }: StatsGridProps) {
+  const { t } = useTranslation();
+  
   const items = [
     {
-      title: "Workouts",
+      title: t("stats.workouts"),
       value: stats.workoutsThisWeek.toString(),
       icon: Clock,
       color: "bg-indigo-100 text-primary",
     },
     {
-      title: "PRs Set",
+      title: t("stats.personalRecords"),
       value: stats.personalRecords.toString(),
       icon: Zap,
       color: "bg-emerald-100 text-secondary",
     },
     {
-      title: "Active Days",
+      title: t("stats.activeDays"),
       value: stats.activeDays.toString(),
       icon: Calendar,
       color: "bg-amber-100 text-amber-500",
     },
     {
-      title: "Total Lifted",
+      title: t("stats.totalWeight"),
       value: stats.totalWeight,
       icon: Scale,
       color: "bg-blue-100 text-blue-500",
