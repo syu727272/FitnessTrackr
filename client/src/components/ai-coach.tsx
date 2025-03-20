@@ -7,11 +7,13 @@ import { Sparkles, SendIcon, Loader2 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/hooks/use-auth";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 export function AiCoach() {
   const [message, setMessage] = useState("");
   const { messages, sendMessage, isLoading, resetConversation } = useGemini();
   const { user } = useAuth();
+  const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +30,7 @@ export function AiCoach() {
           <div className="flex items-center justify-center h-8 w-8 rounded-full bg-indigo-100">
             <Sparkles className="h-5 w-5 text-primary" />
           </div>
-          <CardTitle className="ml-2 text-lg font-semibold text-gray-800">Gemini Coach</CardTitle>
+          <CardTitle className="ml-2 text-lg font-semibold text-gray-800">{t('coach.title')}</CardTitle>
         </div>
         <div>
           <Button
@@ -36,8 +38,8 @@ export function AiCoach() {
             className="text-sm font-medium text-primary hover:text-indigo-700"
             onClick={resetConversation}
           >
-            <span className="hidden sm:inline">New Conversation</span>
-            <span className="sm:hidden">New</span>
+            <span className="hidden sm:inline">{t('coach.resetChat')}</span>
+            <span className="sm:hidden">{t('common.new')}</span>
           </Button>
         </div>
       </CardHeader>
@@ -47,8 +49,7 @@ export function AiCoach() {
           <div className="h-full flex flex-col items-center justify-center text-center">
             <Sparkles className="h-12 w-12 text-primary mb-4" />
             <p className="text-gray-500 max-w-md">
-              Welcome to your AI Workout Coach! Ask me for advice on your workout routine, form
-              tips, or nutrition recommendations based on your fitness goals.
+              {t('coach.welcomeMessage')}
             </p>
           </div>
         ) : (
@@ -102,7 +103,7 @@ export function AiCoach() {
             <div className="bg-white rounded-lg px-4 py-3">
               <div className="flex items-center space-x-2">
                 <Loader2 className="h-4 w-4 animate-spin text-primary" />
-                <p className="text-sm text-gray-500">Thinking...</p>
+                <p className="text-sm text-gray-500">{t('coach.thinking')}</p>
               </div>
             </div>
           </div>
@@ -113,7 +114,7 @@ export function AiCoach() {
         <form className="flex items-center w-full" onSubmit={handleSubmit}>
           <Input
             type="text"
-            placeholder="Ask for advice..."
+            placeholder={t('coach.askPlaceholder')}
             className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             value={message}
             onChange={(e) => setMessage(e.target.value)}

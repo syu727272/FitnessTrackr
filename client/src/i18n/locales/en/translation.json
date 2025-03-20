@@ -143,7 +143,8 @@
     "confirm": "Confirm",
     "back": "Back",
     "next": "Next",
-    "done": "Done"
+    "done": "Done",
+    "new": "New"
   },
   "language": {
     "toggle": "Toggle Language",
