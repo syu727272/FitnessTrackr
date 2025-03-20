@@ -34,13 +34,6 @@ export function GeminiProvider({ children }: { children: ReactNode }) {
       }
       return data;
     },
-    onError: (error: Error) => {
-      toast({
-        title: "Failed to load conversation",
-        description: error.message,
-        variant: "destructive",
-      });
-    },
   });
 
   const { mutate, isPending: isSending, error: sendError } = useMutation({

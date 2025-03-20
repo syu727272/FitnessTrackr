@@ -75,10 +75,19 @@ export function setupGeminiRoutes(app: Express) {
       const conversation = await storage.getUserConversation(userId);
       
       if (!conversation) {
+        // Get language preference for welcome message
+        const preferredLanguage = req.headers["accept-language"] || "en";
+        const language = typeof preferredLanguage === "string" && preferredLanguage.startsWith("ja") ? "ja" : "en";
+        
+        // Create welcome message in the appropriate language
+        const welcomeContent = language === "ja" 
+          ? "こんにちは！AIワークアウトコーチです。フィットネスについてどのようにお手伝いできますか？トレーニングルーチン、エクササイズのフォーム、栄養アドバイス、または回復戦略について質問できます。" 
+          : "Hello! I'm your AI workout coach. How can I help you with your fitness journey today? You can ask me about workout routines, exercise form, nutrition advice, or recovery strategies.";
+        
         // Create initial conversation with welcome message
         const initialMessage: Message = {
           role: "assistant", 
-          content: "Hello! I'm your AI workout coach. How can I help you with your fitness journey today? You can ask me about workout routines, exercise form, nutrition advice, or recovery strategies."
+          content: welcomeContent
         };
         
         const newConversation = await storage.saveUserConversation({
@@ -125,7 +134,8 @@ export function setupGeminiRoutes(app: Express) {
       
       // Get the user's language preference from the request header
       const preferredLanguage = req.headers["accept-language"] || "en";
-      const language = preferredLanguage.startsWith("ja") ? "ja" : "en";
+      const language = typeof preferredLanguage === "string" && preferredLanguage.startsWith("ja") ? "ja" : "en";
+      console.log("Using language for AI response:", language);
       
       // Generate AI response with language preference
       const aiResponseContent = await generateAIResponse(content, workoutHistory, language);
@@ -160,10 +170,19 @@ export function setupGeminiRoutes(app: Express) {
         return res.status(404).json({ message: "Conversation not found" });
       }
       
-      // Create a welcome message for the new conversation
+      // Get language preference for welcome message
+      const preferredLanguage = req.headers["accept-language"] || "en";
+      const language = typeof preferredLanguage === "string" && preferredLanguage.startsWith("ja") ? "ja" : "en";
+      
+      // Create a welcome message in the appropriate language
+      const welcomeContent = language === "ja" 
+        ? "こんにちは！AIワークアウトコーチです。今日はフィットネスについてどのようにお手伝いできますか？" 
+        : "Hello again! I'm your AI workout coach. How can I help you with your fitness journey today?";
+      
+      // Create initial message
       const initialMessage: Message = {
         role: "assistant", 
-        content: "Hello again! I'm your AI workout coach. How can I help you with your fitness journey today?"
+        content: welcomeContent
       };
       
       await storage.saveUserConversation({
