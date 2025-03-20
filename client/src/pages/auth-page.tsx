@@ -185,10 +185,10 @@ export default function AuthPage() {
                       {loginMutation.isPending ? (
                         <>
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          Logging in...
+                          {t("common.loading")}
                         </>
                       ) : (
-                        "Sign In"
+                        t("auth.login")
                       )}
                     </Button>
                   </form>
@@ -216,9 +216,9 @@ export default function AuthPage() {
                         name="lastName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Last Name</FormLabel>
+                            <FormLabel>{t("auth.lastName")}</FormLabel>
                             <FormControl>
-                              <Input placeholder="Last name" {...field} />
+                              <Input placeholder={t("auth.lastName")} {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -230,9 +230,9 @@ export default function AuthPage() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email</FormLabel>
+                          <FormLabel>{t("auth.email")}</FormLabel>
                           <FormControl>
-                            <Input type="email" placeholder="Email address" {...field} />
+                            <Input type="email" placeholder={t("auth.email")} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -243,9 +243,9 @@ export default function AuthPage() {
                       name="username"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Username</FormLabel>
+                          <FormLabel>{t("auth.username")}</FormLabel>
                           <FormControl>
-                            <Input placeholder="Choose a username" {...field} />
+                            <Input placeholder={t("auth.username")} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -256,9 +256,9 @@ export default function AuthPage() {
                       name="password"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Password</FormLabel>
+                          <FormLabel>{t("auth.password")}</FormLabel>
                           <FormControl>
-                            <Input type="password" placeholder="Create a password" {...field} />
+                            <Input type="password" placeholder={t("auth.password")} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -270,9 +270,9 @@ export default function AuthPage() {
                         name="height"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Height (cm)</FormLabel>
+                            <FormLabel>{t("profile.height")}</FormLabel>
                             <FormControl>
-                              <Input type="number" placeholder="Height" {...field} />
+                              <Input type="number" placeholder={t("profile.height")} {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -283,9 +283,9 @@ export default function AuthPage() {
                         name="weight"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Weight (kg)</FormLabel>
+                            <FormLabel>{t("profile.weight")}</FormLabel>
                             <FormControl>
-                              <Input type="number" placeholder="Weight" {...field} />
+                              <Input type="number" placeholder={t("profile.weight")} {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -297,9 +297,9 @@ export default function AuthPage() {
                       name="goals"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Fitness Goals</FormLabel>
+                          <FormLabel>{t("profile.goals")}</FormLabel>
                           <FormControl>
-                            <Input placeholder="e.g. Lose weight, Build muscle" {...field} />
+                            <Input placeholder={t("profile.goalsPlaceholder")} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -313,10 +313,10 @@ export default function AuthPage() {
                       {registerMutation.isPending ? (
                         <>
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          Creating account...
+                          {t("common.loading")}
                         </>
                       ) : (
-                        "Create Account"
+                        t("auth.register")
                       )}
                     </Button>
                   </form>
@@ -328,16 +328,16 @@ export default function AuthPage() {
             <div className="text-sm text-gray-500 text-center">
               {activeTab === "login" ? (
                 <p>
-                  Don't have an account?{" "}
+                  {t("auth.noAccount")}{" "}
                   <Button variant="link" className="p-0" onClick={() => setActiveTab("register")}>
-                    Create one
+                    {t("auth.createAccount")}
                   </Button>
                 </p>
               ) : (
                 <p>
-                  Already have an account?{" "}
+                  {t("auth.haveAccount")}{" "}
                   <Button variant="link" className="p-0" onClick={() => setActiveTab("login")}>
-                    Sign in
+                    {t("auth.loginLink")}
                   </Button>
                 </p>
               )}
