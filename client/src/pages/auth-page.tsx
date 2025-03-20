@@ -25,7 +25,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { Redirect } from "wouter";
 import { Dumbbell, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import i18n from "@/i18n";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 // Extended schema for login with validation
 const loginSchema = z.object({
@@ -139,23 +139,14 @@ export default function AuthPage() {
                 : t("auth.registerDescription")}
             </CardDescription>
             <div className="absolute top-4 right-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  const nextLang = i18n.language === 'en' ? 'ja' : 'en';
-                  i18n.changeLanguage(nextLang);
-                }}
-              >
-                {i18n.language === 'en' ? '日本語' : 'English'}
-              </Button>
+              <LanguageSwitcher />
             </div>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="login" value={activeTab} onValueChange={setActiveTab}>
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="login">Login</TabsTrigger>
-                <TabsTrigger value="register">Register</TabsTrigger>
+                <TabsTrigger value="login">{t("auth.login")}</TabsTrigger>
+                <TabsTrigger value="register">{t("auth.register")}</TabsTrigger>
               </TabsList>
               <TabsContent value="login">
                 <Form {...loginForm}>
@@ -212,9 +203,9 @@ export default function AuthPage() {
                         name="firstName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>First Name</FormLabel>
+                            <FormLabel>{t("auth.firstName")}</FormLabel>
                             <FormControl>
-                              <Input placeholder="First name" {...field} />
+                              <Input placeholder={t("auth.firstName")} {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
