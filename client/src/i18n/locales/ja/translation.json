@@ -25,7 +25,10 @@
     "usernameRequired": "ユーザー名を入力してください",
     "passwordRequired": "パスワードを入力してください",
     "welcomeBack": "おかえりなさい",
-    "signInToContinue": "続けるにはログインしてください"
+    "signInToContinue": "続けるにはログインしてください",
+    "noAccount": "アカウントをお持ちでない方は",
+    "haveAccount": "すでにアカウントをお持ちの方は",
+    "createAccount": "新規登録"
   },
   "home": {
     "welcome": "ようこそ、{{name}}さん！",
@@ -104,7 +107,10 @@
     "currentPassword": "現在のパスワード",
     "newPassword": "新しいパスワード",
     "confirmNewPassword": "新しいパスワード（確認）",
-    "passwordSuccess": "パスワードを変更しました"
+    "passwordSuccess": "パスワードを変更しました",
+    "cm": "cm",
+    "kg": "kg",
+    "goalsPlaceholder": "フィットネス目標を入力してください"
   },
   "language": {
     "toggle": "言語を切り替える",

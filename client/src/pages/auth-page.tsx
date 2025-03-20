@@ -40,8 +40,8 @@ const registerSchema = z.object({
   firstName: z.string().optional(),
   lastName: z.string().optional(),
   email: z.string().email("Please enter a valid email").optional(),
-  height: z.string().optional().transform(val => val ? parseInt(val) : undefined),
-  weight: z.string().optional().transform(val => val ? parseInt(val) : undefined),
+  height: z.coerce.number().optional(),
+  weight: z.coerce.number().optional(),
   goals: z.string().optional(),
 });
 
@@ -66,8 +66,8 @@ export default function AuthPage() {
       firstName: "",
       lastName: "",
       email: "",
-      height: "",
-      weight: "",
+      height: "",  // string that will be transformed to number by schema
+      weight: "",  // string that will be transformed to number by schema
       goals: "",
     },
   });
