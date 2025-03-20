@@ -24,6 +24,8 @@ import {
 import { useAuth } from "@/hooks/use-auth";
 import { Redirect } from "wouter";
 import { Dumbbell, Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import i18n from "@/i18n";
 
 // Extended schema for login with validation
 const loginSchema = z.object({
@@ -46,6 +48,7 @@ const registerSchema = z.object({
 export default function AuthPage() {
   const { user, loginMutation, registerMutation } = useAuth();
   const [activeTab, setActiveTab] = useState("login");
+  const { t } = useTranslation();
 
   const loginForm = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -132,9 +135,21 @@ export default function AuthPage() {
             <CardTitle className="text-2xl">Welcome to FitTrack</CardTitle>
             <CardDescription>
               {activeTab === "login"
-                ? "Sign in to your account to continue"
-                : "Create a new account to get started"}
+                ? t("auth.loginDescription")
+                : t("auth.registerDescription")}
             </CardDescription>
+            <div className="absolute top-4 right-4">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  const nextLang = i18n.language === 'en' ? 'ja' : 'en';
+                  i18n.changeLanguage(nextLang);
+                }}
+              >
+                {i18n.language === 'en' ? '日本語' : 'English'}
+              </Button>
+            </div>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="login" value={activeTab} onValueChange={setActiveTab}>
