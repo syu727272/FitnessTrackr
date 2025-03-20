@@ -11,6 +11,9 @@ interface Message {
 
 // Initialize the Google Generative AI with the API key
 const apiKey = process.env.GEMINI_API_KEY || "";
+if (!apiKey) {
+  console.warn("GEMINI_API_KEY environment variable is not set. AI responses will not work correctly.");
+}
 const genAI = new GoogleGenerativeAI(apiKey);
 
 // Generate a response using Gemini API
@@ -45,6 +48,11 @@ Your role is to give helpful, accurate, and personalized fitness guidance.
     return text || "I'm unable to provide a response at the moment. Please try again later.";
   } catch (error) {
     console.error("Error generating AI response:", error);
+    
+    // Check if error is related to API key
+    if (!apiKey) {
+      return "API key is missing. Please make sure the GEMINI_API_KEY environment variable is set correctly.";
+    }
     
     // Fallback response in case of API error
     return "Sorry, I'm having trouble connecting to my knowledge base right now. Please try asking your question again in a moment.";
