@@ -17,16 +17,20 @@ if (!apiKey) {
 const genAI = new GoogleGenerativeAI(apiKey);
 
 // Generate a response using Gemini API
-async function generateAIResponse(prompt: string, workoutHistory: any): Promise<string> {
+async function generateAIResponse(prompt: string, workoutHistory: any, language: string = "en"): Promise<string> {
   try {
-    console.log("Generating AI response using Gemini API for prompt:", prompt);
+    console.log("Generating AI response using Gemini API for prompt:", prompt, "in language:", language);
     
     // Create a more detailed prompt with context
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
     
-    // Create a context-rich prompt by including workout history and role description
+    // Determine if we should respond in Japanese based on language setting or prompt content
+    const isJapanese = language === "ja" || /[\u3000-\u303F\u3040-\u309F\u30A0-\u30FF\uFF00-\uFFEF\u4E00-\u9FAF]/.test(prompt);
+    
+    // Create a context-rich prompt with language instructions
     let contextPrompt = `You are a knowledgeable fitness coach providing advice to a user. 
 Your role is to give helpful, accurate, and personalized fitness guidance.
+${isJapanese ? "Please respond in Japanese language." : ""}
 `;
 
     // Add workout history if available
@@ -119,8 +123,12 @@ export function setupGeminiRoutes(app: Express) {
       // Get workout history for context (simplified for now)
       const workoutHistory = await storage.getRecentWorkouts(userId, 5);
       
-      // Generate AI response
-      const aiResponseContent = await generateAIResponse(content, workoutHistory);
+      // Get the user's language preference from the request header
+      const preferredLanguage = req.headers["accept-language"] || "en";
+      const language = preferredLanguage.startsWith("ja") ? "ja" : "en";
+      
+      // Generate AI response with language preference
+      const aiResponseContent = await generateAIResponse(content, workoutHistory, language);
       const aiMessage: Message = { role: "assistant", content: aiResponseContent };
       
       // Save messages

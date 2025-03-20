@@ -2,6 +2,7 @@ import { createContext, ReactNode, useContext, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 interface Message {
   role: "user" | "assistant";
@@ -21,6 +22,7 @@ const GeminiContext = createContext<GeminiContextType | null>(null);
 export function GeminiProvider({ children }: { children: ReactNode }) {
   const { toast } = useToast();
   const [messages, setMessages] = useState<Message[]>([]);
+  const { i18n } = useTranslation();
 
   const { isLoading: isLoadingHistory, error: historyError } = useQuery({
     queryKey: ["/api/ai/conversation"],
@@ -41,9 +43,14 @@ export function GeminiProvider({ children }: { children: ReactNode }) {
     },
   });
 
-  const { mutate, isLoading: isSending, error: sendError } = useMutation({
+  const { mutate, isPending: isSending, error: sendError } = useMutation({
     mutationFn: async (content: string) => {
-      const res = await apiRequest("POST", "/api/ai/message", { content });
+      const currentLang = i18n.language || "en";
+      // Add language header to the request for the backend to detect
+      const headers = {
+        "Accept-Language": currentLang
+      };
+      const res = await apiRequest("POST", "/api/ai/message", { content }, { headers });
       return res.json();
     },
     onSuccess: (data) => {
