@@ -122,6 +122,8 @@
     "send": "Send",
     "thinking": "Thinking...",
     "resetChat": "Reset Chat",
+    "askPlaceholder": "Ask for advice...",
+    "welcomeMessage": "Welcome to your AI Workout Coach! Ask me for advice on your workout routine, form tips, or nutrition recommendations based on your fitness goals.",
     "examples": {
       "title": "Example Questions",
       "example1": "How can I improve my bench press form?",
