@@ -24,7 +24,7 @@ i18n
   // Set up i18next
   .init({
     resources,
-    fallbackLng: 'ja', // Default to Japanese
+    fallbackLng: 'en', // Default to English as fallback
     interpolation: {
       escapeValue: false, // React already escapes values
     },

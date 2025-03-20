@@ -8,7 +8,7 @@
   },
   "auth": {
     "login": "ログイン",
-    "register": "登録",
+    "register": "新規登録",
     "logout": "ログアウト",
     "username": "ユーザー名",
     "password": "パスワード",
@@ -19,11 +19,11 @@
     "submit": "送信",
     "orRegister": "アカウントをお持ちでない方は",
     "orLogin": "すでにアカウントをお持ちの方は",
-    "registerLink": "登録する",
-    "loginLink": "ログインする",
+    "registerLink": "新規登録",
+    "loginLink": "ログイン",
     "passwordMismatch": "パスワードが一致しません",
-    "usernameRequired": "ユーザー名は必須です",
-    "passwordRequired": "パスワードは必須です",
+    "usernameRequired": "ユーザー名を入力してください",
+    "passwordRequired": "パスワードを入力してください",
     "welcomeBack": "おかえりなさい",
     "signInToContinue": "続けるにはログインしてください"
   },
@@ -32,19 +32,19 @@
     "startWorkout": "トレーニングを開始",
     "stats": {
       "title": "統計情報",
-      "workoutsThisWeek": "今週のトレーニング",
-      "personalRecords": "自己ベスト",
+      "workoutsThisWeek": "今週のトレーニング回数",
+      "personalRecords": "自己ベスト記録数",
       "activeDays": "アクティブな日数",
       "totalWeight": "合計重量",
       "workouts": "トレーニング"
     },
     "recentWorkouts": "最近のトレーニング",
-    "noWorkouts": "まだトレーニングがありません",
+    "noWorkouts": "トレーニング記録がありません",
     "viewAll": "すべて表示",
     "defaultName": "フィットネス愛好家",
     "lastWorkout": "最後のトレーニングは",
     "noDate": "しばらく前",
-    "readyPrompt": "新しいセッションの準備はできていますか？"
+    "readyPrompt": "新しいセッションを始めませんか？"
   },
   "workout": {
     "title": "トレーニング",
@@ -67,10 +67,10 @@
     "kg": "kg",
     "addSet": "セットを追加",
     "removeExercise": "削除",
-    "noExercises": "エクササイズがありません。追加してください。",
-    "workoutCreated": "トレーニングが作成されました",
-    "workoutUpdated": "トレーニングが更新されました",
-    "namePlaceholder": "トレーニング名を入力"
+    "noExercises": "エクササイズが登録されていません。エクササイズを追加してください。",
+    "workoutCreated": "トレーニングを作成しました",
+    "workoutUpdated": "トレーニングを更新しました",
+    "namePlaceholder": "トレーニング名を入力してください"
   },
   "history": {
     "title": "トレーニング履歴",
@@ -80,7 +80,7 @@
       "year": "年間",
       "all": "すべて"
     },
-    "noWorkouts": "この期間にトレーニングはありません",
+    "noWorkouts": "この期間のトレーニング記録はありません",
     "completed": "完了",
     "incomplete": "未完了",
     "sets": "{{count}}セット",
@@ -99,30 +99,16 @@
     "weight": "体重",
     "goals": "目標",
     "save": "保存",
-    "saveSuccess": "プロフィールが更新されました",
+    "saveSuccess": "プロフィールを更新しました",
     "changePassword": "パスワード変更",
     "currentPassword": "現在のパスワード",
     "newPassword": "新しいパスワード",
     "confirmNewPassword": "新しいパスワード（確認）",
-    "passwordSuccess": "パスワードが変更されました",
-    "cm": "cm",
-    "kg": "kg",
-    "goalsPlaceholder": "あなたのフィットネス目標を入力してください"
+    "passwordSuccess": "パスワードを変更しました"
   },
-  "coach": {
-    "title": "AIコーチ",
-    "intro": "エクササイズや栄養、フィットネスに関する質問をしてください。",
-    "placeholder": "質問を入力...",
-    "send": "送信",
-    "thinking": "考え中...",
-    "resetChat": "会話をリセット",
-    "examples": {
-      "title": "質問例",
-      "example1": "ベンチプレスのフォームを改善するには？",
-      "example2": "減量中の食事プランを提案してください",
-      "example3": "5kmを30分で走れるようになるトレーニング方法は？",
-      "example4": "腕の筋肉を効果的に鍛えるエクササイズは？"
-    }
+  "language": {
+    "toggle": "言語を切り替える",
+    "select": "言語を選択"
   },
   "common": {
     "loading": "読み込み中...",
@@ -138,10 +124,6 @@
     "back": "戻る",
     "next": "次へ",
     "done": "完了"
-  },
-  "language": {
-    "toggle": "言語切替",
-    "select": "言語を選択"
   },
   "errors": {
     "loginFailed": "ログインに失敗しました。ユーザー名とパスワードを確認してください。",
