@@ -22,7 +22,7 @@ async function generateAIResponse(prompt: string, workoutHistory: any): Promise<
     console.log("Generating AI response using Gemini API for prompt:", prompt);
     
     // Create a more detailed prompt with context
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
     
     // Create a context-rich prompt by including workout history and role description
     let contextPrompt = `You are a knowledgeable fitness coach providing advice to a user. 
