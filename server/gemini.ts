@@ -1,6 +1,13 @@
 import { Express } from "express";
 import { storage } from "./storage";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { AiConversation } from "../shared/schema";
+
+// Define message type
+interface Message {
+  role: "user" | "assistant";
+  content: string;
+}
 
 // Initialize the Google Generative AI with the API key
 const apiKey = process.env.GEMINI_API_KEY || "";
@@ -57,7 +64,7 @@ export function setupGeminiRoutes(app: Express) {
       
       if (!conversation) {
         // Create initial conversation with welcome message
-        const initialMessage = {
+        const initialMessage: Message = {
           role: "assistant", 
           content: "Hello! I'm your AI workout coach. How can I help you with your fitness journey today? You can ask me about workout routines, exercise form, nutrition advice, or recovery strategies."
         };
@@ -93,10 +100,12 @@ export function setupGeminiRoutes(app: Express) {
       
       // Get existing conversation or create a new one
       let conversation = await storage.getUserConversation(userId);
-      const messages = conversation ? [...conversation.messages] : [];
+      const messages: Message[] = conversation && Array.isArray(conversation.messages) 
+        ? [...conversation.messages as Message[]] 
+        : [];
       
       // Add user message
-      const userMessage = { role: "user", content };
+      const userMessage: Message = { role: "user", content };
       messages.push(userMessage);
       
       // Get workout history for context (simplified for now)
@@ -104,7 +113,7 @@ export function setupGeminiRoutes(app: Express) {
       
       // Generate AI response
       const aiResponseContent = await generateAIResponse(content, workoutHistory);
-      const aiMessage = { role: "assistant", content: aiResponseContent };
+      const aiMessage: Message = { role: "assistant", content: aiResponseContent };
       
       // Save messages
       messages.push(aiMessage);
@@ -136,7 +145,7 @@ export function setupGeminiRoutes(app: Express) {
       }
       
       // Create a welcome message for the new conversation
-      const initialMessage = {
+      const initialMessage: Message = {
         role: "assistant", 
         content: "Hello again! I'm your AI workout coach. How can I help you with your fitness journey today?"
       };
