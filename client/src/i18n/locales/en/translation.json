@@ -28,7 +28,10 @@
     "signInToContinue": "Sign in to continue",
     "noAccount": "Don't have an account?",
     "haveAccount": "Already have an account?",
-    "createAccount": "Create one"
+    "createAccount": "Create one",
+    "loginDescription": "Sign in to track your fitness journey",
+    "registerDescription": "Create an account to get started",
+    "welcomeTitle": "Welcome to FitTrack"
   },
   "home": {
     "welcome": "Welcome, {{name}}!",

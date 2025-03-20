@@ -28,7 +28,10 @@
     "signInToContinue": "続けるにはログインしてください",
     "noAccount": "アカウントをお持ちでない方は",
     "haveAccount": "すでにアカウントをお持ちの方は",
-    "createAccount": "新規登録"
+    "createAccount": "新規登録",
+    "loginDescription": "フィットネス記録を始めるにはログインしてください",
+    "registerDescription": "アカウントを作成して始めましょう",
+    "welcomeTitle": "FitTrackへようこそ"
   },
   "home": {
     "welcome": "ようこそ、{{name}}さん！",

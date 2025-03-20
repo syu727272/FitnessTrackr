@@ -66,8 +66,8 @@ export default function AuthPage() {
       firstName: "",
       lastName: "",
       email: "",
-      height: "",  // string that will be transformed to number by schema
-      weight: "",  // string that will be transformed to number by schema
+      height: undefined,  // optional number value
+      weight: undefined,  // optional number value
       goals: "",
     },
   });
@@ -132,7 +132,7 @@ export default function AuthPage() {
       <div className="md:w-1/2 p-8 flex items-center justify-center">
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle className="text-2xl">Welcome to FitTrack</CardTitle>
+            <CardTitle className="text-2xl">{t("auth.welcomeTitle")}</CardTitle>
             <CardDescription>
               {activeTab === "login"
                 ? t("auth.loginDescription")
@@ -156,9 +156,9 @@ export default function AuthPage() {
                       name="username"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Username</FormLabel>
+                          <FormLabel>{t("auth.username")}</FormLabel>
                           <FormControl>
-                            <Input placeholder="Enter your username" {...field} />
+                            <Input placeholder={t("auth.username")} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -169,9 +169,9 @@ export default function AuthPage() {
                       name="password"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Password</FormLabel>
+                          <FormLabel>{t("auth.password")}</FormLabel>
                           <FormControl>
-                            <Input type="password" placeholder="Enter your password" {...field} />
+                            <Input type="password" placeholder={t("auth.password")} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -272,7 +272,12 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>{t("profile.height")}</FormLabel>
                             <FormControl>
-                              <Input type="number" placeholder={t("profile.height")} {...field} />
+                              <Input 
+                                type="number" 
+                                placeholder={t("profile.height")} 
+                                {...field}
+                                onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -285,7 +290,12 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>{t("profile.weight")}</FormLabel>
                             <FormControl>
-                              <Input type="number" placeholder={t("profile.weight")} {...field} />
+                              <Input 
+                                type="number" 
+                                placeholder={t("profile.weight")} 
+                                {...field}
+                                onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
